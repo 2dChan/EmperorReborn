@@ -92,15 +92,33 @@ static struct hostent* PASCAL gethostbyname_override_static(const char* name) { 
 
 
 typedef HRESULT(__stdcall* PFN_DllRegisterServer)();
+typedef void(__stdcall* PFN_OaEnablePerUserTLibRegistration)();
+
+static void enablePerUserTypeLibraryRegistration()
+{
+  SetEnvironmentVariableA("OAPERUSERTLIBREG", "1");
+
+  HMODULE oleaut32 = LoadLibraryA("OLEAUT32.dll");
+  if (!oleaut32)
+    return;
+
+  // The setting is process-global inside OleAut32 and is lost if the DLL unloads.
+  PFN_OaEnablePerUserTLibRegistration enablePerUserTLibRegistration =
+    (PFN_OaEnablePerUserTLibRegistration)GetProcAddress(oleaut32, "OaEnablePerUserTLibRegistration");
+  if (enablePerUserTLibRegistration)
+    enablePerUserTLibRegistration();
+}
 
 // WOL access is provided through a separately installed COM type library (WOLAPI.DLL).
 // It's annoying to have to use the old broken installer though, so here we just register the type
 // library ourselves. We use registry redirects to allow us to do this without admin privileges,
-// and OaEnablePerUserTLibRegistration is a magic function that makes the redirects work for
-// registering a type library.
+// and the per-user type library registration setting makes the redirects work for registering a
+// type library.
 // Technique from here: https://stackoverflow.com/q/44379353
 void registerWolTypeLibrary()
 {
+  enablePerUserTypeLibraryRegistration();
+
   HMODULE wolApi = nullptr;
   wolApi = LoadLibraryA("WOL/WOLAPI.DLL");
 
@@ -108,8 +126,6 @@ void registerWolTypeLibrary()
 
   PFN_DllRegisterServer wolApiRegisterServer = (PFN_DllRegisterServer)GetProcAddress(wolApi, "DllRegisterServer");
   release_assert(wolApiRegisterServer);
-
-  OaEnablePerUserTLibRegistration();
 
   HKEY key = nullptr;
   release_assert(RegCreateKeyA(HKEY_CURRENT_USER, "Software\\Classes", &key) == ERROR_SUCCESS);
