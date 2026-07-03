@@ -6,8 +6,13 @@ name: build
 # Pinned to windows-2022 because that image ships the v143 toolset.
 
 on:
+  workflow_dispatch:
   push:
-    branches: [ main ]
+    branches:
+      - main
+      - 'feat/**'
+      - 'fix/**'
+      - 'chore/**'
   pull_request:
     branches: [ main ]
 
@@ -50,3 +55,13 @@ jobs:
             dist/EmperorReborn-vci.zip
             dist/EmperorReborn-vci.zip.sha256
           if-no-files-found: error
+
+      - name: Upload test binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: EmperorReborn-test-binaries
+          path: |
+            Release/EmperorReborn.exe
+            Release/EmperorHooks.dll
+          if-no-files-found: error
+          retention-days: 14
