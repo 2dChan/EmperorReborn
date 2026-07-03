@@ -103,6 +103,8 @@ std::optional<std::string> wideToAscii(const std::wstring& wide)
 
 PROCESS_INFORMATION runGameExe()
 {
+  SetEnvironmentVariableA("OAPERUSERTLIBREG", "1");
+
   std::string hookDllPath = *wideToAscii(getFolderThisExeIsIn()) + "\\EmperorHooks.dll";
   std::string commandLine = "Game.exe -w";
   PROCESS_INFORMATION processInfo = {};
