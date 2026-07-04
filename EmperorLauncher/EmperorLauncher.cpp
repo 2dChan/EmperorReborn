@@ -631,7 +631,7 @@ int wmain(int argc, wchar_t* argv[])
     int x = 30;
     int y = yMax + 50;
 
-    CreateWindowEx(0, WC_STATIC, L"Emperor Reborn v2.5", WS_CHILD | WS_VISIBLE, x, y, 300, 20, window, nullptr, nullptr, nullptr);
+    CreateWindowEx(0, WC_STATIC, L"Emperor Reborn v2.6", WS_CHILD | WS_VISIBLE, x, y, 300, 20, window, nullptr, nullptr, nullptr);
     y += 24;
 
     githubLink = CreateWindowEx(0, WC_STATIC, L"github.com/azmawee", WS_CHILD | WS_VISIBLE | SS_NOTIFY, x, y, 300, 20, window, nullptr, nullptr, nullptr);

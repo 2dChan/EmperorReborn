@@ -13,7 +13,7 @@ image: /icon/og-card.png
   "applicationCategory": "GameApplication",
   "operatingSystem": "Windows 10, Windows 11",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-  "softwareVersion": "2.5",
+  "softwareVersion": "2.6",
   "downloadUrl": "https://github.com/azmawee/EmperorReborn/releases/latest",
   "url": "https://azmawee.github.io/EmperorReborn/",
   "author": { "@type": "Person", "name": "azmawee" },
@@ -43,8 +43,8 @@ Every release is checksummed so you can confirm a download is the real build and
 with something slipped in. These are the official SHA256 hashes for the latest release, served over
 HTTPS from this site. If a copy you got from anywhere does not match, do not run it.
 
-Check the zip in PowerShell with `Get-FileHash .\EmperorReborn-v2.5.zip -Algorithm SHA256` (or
-`certutil -hashfile EmperorReborn-v2.5.zip SHA256`) and compare it to the hashes below. Each zip also
+Check the zip in PowerShell with `Get-FileHash .\EmperorReborn-v2.6.zip -Algorithm SHA256` (or
+`certutil -hashfile EmperorReborn-v2.6.zip SHA256`) and compare it to the hashes below. Each zip also
 carries a `SHA256SUMS.txt` listing the two executables, so you can verify those after extracting.
 
 ```
