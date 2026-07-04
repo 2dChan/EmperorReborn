@@ -48,9 +48,9 @@ Check the zip in PowerShell with `Get-FileHash .\EmperorReborn-v2.6.zip -Algorit
 carries a `SHA256SUMS.txt` listing the two executables, so you can verify those after extracting.
 
 ```
-zip                d029a9c0820b91855504066705fd95ae51cddcfab0a5df6aad4a336a6875fd81
-EmperorReborn.exe  a8e306c4a01e77a6e3f541ad106fd9574a799b8263c2f66b277398adc6e82830
-EmperorHooks.dll   9b4378738e1e404782dfaec9f5e8a1bb6d5dcc75d976468f5f82dbd3f5f37c0b
+zip                248eb22db244c078f3dc502a11146512dc4d93a51ad8cc90fb5b82643f249ba2
+EmperorReborn.exe  e242f77a55d7062c423f79c6c9633b008a439d2e10e2d42c82817fc5ef062d9d
+EmperorHooks.dll   4725273136fb6af45ce80fd1cf5189c48994a720472727701b5a79a42fac0aaf
 ```
 
 ## Antivirus false positive
@@ -68,7 +68,7 @@ real malware family with a known payload, which is what you would see if this we
 The count also looks bigger than it is because many of those engines share one scanner, the single
 BitDefender `Doris` detection alone shows up under seven different vendor names.
 
-You can see the full report for the current release here,
+You can see the full report for the previous v2.5 release here,
 [VirusTotal report for EmperorReborn-v2.5.zip](https://www.virustotal.com/gui/file/d029a9c0820b91855504066705fd95ae51cddcfab0a5df6aad4a336a6875fd81).
 
 You do not have to take my word for any of this. The entire source is on
